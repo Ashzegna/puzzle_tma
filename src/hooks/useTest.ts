@@ -78,19 +78,19 @@ export function useTest() {
     setCompatibility(null);
   }, []);
   
-  // Поделиться результатом теста
-  const shareResult = useCallback(() => {
-    if (!testResult) return;
-    
-    // Создаем уникальный идентификатор для теста
-    const testId = Math.random().toString(36).substring(2, 15);
-    
-    // Формируем URL для шаринга
-    const shareUrl = `https://t.me/share/url?url=https://your-vercel-app-url.vercel.app?testId=${testId}&powerType=${testResult.type}&text=Я узнал свою скрытую сверхспособность - "${testResult.name}"! А какая у тебя?`;
-    
-    // Открываем ссылку в Telegram
-    tgWebApp.openTelegramLink(shareUrl);
-  }, [testResult, tgWebApp]);
+// Поделиться результатом теста
+const shareResult = useCallback(() => {
+  if (!testResult) return;
+  
+  // Создаем уникальный идентификатор для теста
+  const testId = Math.random().toString(36).substring(2, 15);
+  
+  // Формируем правильную ссылку на Miniapp с параметрами
+  const shareUrl = `https://t.me/knowyourmagic_bot/app?startapp=test_${testId}_${testResult.type}`;
+  
+  // Открываем ссылку в Telegram
+  tgWebApp.openTelegramLink(shareUrl);
+}, [testResult, tgWebApp]);
   
   // Установка кнопки шаринга в конце теста
   useEffect(() => {
