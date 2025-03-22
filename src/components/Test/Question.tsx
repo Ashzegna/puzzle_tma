@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Question as QuestionType, Option } from '../../types';
 import ProgressBar from '../UI/ProgressBar';
+import Button from '../UI/Button';
 
 interface QuestionProps {
   question: QuestionType;
@@ -19,24 +20,13 @@ const Question: React.FC<QuestionProps> = ({
   currentQuestion,
   totalQuestions
 }) => {
-  const [isTransitioning, setIsTransitioning] = useState(false);
-
   // Функция для обработки клика по опции
   const handleOptionClick = (option: Option) => {
-    if (isTransitioning) return; // Предотвращаем множественные нажатия во время перехода
-    
-    setIsTransitioning(true);
     onSelectOption(option);
-    
-    // Добавляем небольшую задержку для визуальной обратной связи
-    setTimeout(() => {
-      onNext();
-      setIsTransitioning(false);
-    }, 400); // Чуть увеличил задержку для лучшей видимости выбора
   };
 
   return (
-    <div className={`question-container card fade-in ${isTransitioning ? 'question-transitioning' : ''}`}>
+    <div className="question-container card fade-in">
       <ProgressBar current={currentQuestion + 1} total={totalQuestions} />
       
       <h2 className="question-title">
@@ -47,12 +37,22 @@ const Question: React.FC<QuestionProps> = ({
         {question.options.map((option) => (
           <div
             key={option.id}
-            className={`option ${selectedOption?.id === option.id ? 'selected' : ''} ${isTransitioning ? 'option-disabled' : ''}`}
+            className={`option ${selectedOption?.id === option.id ? 'selected' : ''}`}
             onClick={() => handleOptionClick(option)}
           >
             {option.text}
           </div>
         ))}
+      </div>
+      
+      <div className="question-actions">
+        <Button 
+          onClick={onNext}
+          disabled={!selectedOption}
+          className="next-button"
+        >
+          Следующий вопрос
+        </Button>
       </div>
     </div>
   );
