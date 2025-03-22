@@ -81,45 +81,28 @@ export function useTest() {
   const shareResult = useCallback(() => {
     if (!testResult) return;
     
-    // Получаем данные пользователя
-    const userData = getUserData();
-    
-    // Создаем уникальный идентификатор для теста
-    const testId = Math.random().toString(36).substring(2, 15);
-    
-    // Формируем правильную ссылку на Miniapp с параметрами
-    // Обратите внимание: здесь используется формат, который Telegram может обработать
-    const botUsername = 'knowyourmagic_bot'; // Замените на имя вашего бота
-    
-    // В Telegram есть два способа поделиться:
-    // 1. Через WebApp.switchInlineQuery - для инлайн-режима
-    // 2. Через WebApp.openTelegramLink - для обычной ссылки
-    
     try {
-      // Формируем текст сообщения для шаринга
+      // Формируем текст сообщения с результатом
       const shareText = `🧠 Я прошел тест "Пазлы" и узнал свою скрытую сверхспособность!
       
 Моя сверхспособность: ${testResult.name} ${testResult.emoji}
 
 "${testResult.songLine}"
 
-Узнай свою сверхспособность и проверь нашу совместимость!`;
+Узнай свою сверхспособность!`;
       
-      // Используем switchInlineQuery для создания инлайн-сообщения
-      // Это позволит пользователю выбрать чат для отправки
-      tgWebApp.switchInlineQuery(`test_${testId}_${testResult.type}`, ['users', 'groups', 'channels']);
+      // Замените 'knowyourmagic_bot' на имя вашего бота (без символа @)
+      const botUsername = 'knowyourmagic_bot';
+      const shareUrl = `https://t.me/share/url?url=https://t.me/${botUsername}/app&text=${encodeURIComponent(shareText)}`;
       
-      // Также можно использовать shareUrl для обычной ссылки:
-      // const shareUrl = `https://t.me/${botUsername}/app?startapp=test_${testId}_${testResult.type}`;
-      // window.open(shareUrl, '_blank');
+      // Открываем ссылку в Telegram
+      tgWebApp.openTelegramLink(shareUrl);
+      
     } catch (error) {
       console.error('Ошибка при попытке поделиться:', error);
-      
-      // Запасной вариант - открыть приложение с параметрами
-      const fallbackUrl = `https://t.me/${botUsername}/app?startapp=test_${testId}_${testResult.type}`;
-      tgWebApp.openTelegramLink(fallbackUrl);
+      alert('Не удалось поделиться результатом. Попробуйте ещё раз.');
     }
-  }, [testResult, tgWebApp, getUserData]);
+  }, [testResult, tgWebApp]);
   
   // Установка кнопки шаринга в конце теста
   useEffect(() => {
