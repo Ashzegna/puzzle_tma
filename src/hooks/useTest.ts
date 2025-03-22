@@ -54,8 +54,7 @@ export function useTest() {
       setTestResult(result);
       setIsTestCompleted(true);
       
-      // Анимация завершения будет добавлена позже
-      // Или можно использовать простую альтернативу без библиотеки
+      // Анимация завершения происходит в компоненте Result
       console.log('Тест завершен!');
       
       // Проверяем, есть ли данные о поделенном тесте
@@ -78,19 +77,19 @@ export function useTest() {
     setCompatibility(null);
   }, []);
   
-// Поделиться результатом теста
-const shareResult = useCallback(() => {
-  if (!testResult) return;
-  
-  // Создаем уникальный идентификатор для теста
-  const testId = Math.random().toString(36).substring(2, 15);
-  
-  // Формируем правильную ссылку на Miniapp с параметрами
-  const shareUrl = `https://t.me/knowyourmagic_bot/app?startapp=test_${testId}_${testResult.type}`;
-  
-  // Открываем ссылку в Telegram
-  tgWebApp.openTelegramLink(shareUrl);
-}, [testResult, tgWebApp]);
+  // Поделиться результатом теста
+  const shareResult = useCallback(() => {
+    if (!testResult) return;
+    
+    // Создаем уникальный идентификатор для теста
+    const testId = Math.random().toString(36).substring(2, 15);
+    
+    // Формируем правильную ссылку на Miniapp с параметрами
+    const shareUrl = `https://t.me/knowyourmagic_bot/app?startapp=test_${testId}_${testResult.type}`;
+    
+    // Открываем ссылку в Telegram
+    tgWebApp.openTelegramLink(shareUrl);
+  }, [testResult, tgWebApp]);
   
   // Установка кнопки шаринга в конце теста
   useEffect(() => {
