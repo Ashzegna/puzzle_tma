@@ -146,6 +146,7 @@
   transform: translateX(10px);
   background-color: var(--accent-color);
   color: #000;
+  transition: all 0.3s ease;
 }
 
 /* Стили для конфетти-эффекта */
@@ -155,4 +156,15 @@
   border-radius: 50%;
   opacity: 0;
   transition: all 1s ease-out;
+}
+
+/* Новые стили для плавного перехода между вопросами */
+.question-transitioning {
+  opacity: 0.8;
+  transform: translateX(-10px);
+  transition: all 0.3s ease;
+}
+
+.option-disabled {
+  pointer-events: none; /* Отключает взаимодействие во время перехода */
 }
