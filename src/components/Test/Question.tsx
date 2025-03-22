@@ -60,33 +60,3 @@ const Question: React.FC<QuestionProps> = ({
 };
 
 export default Question;
-      <h2 className="question-title">
-        {question.emoji} {question.text}
-      </h2>
-      
-      <div className="options-list">
-        {question.options.map((option) => (
-          <div
-            key={option.id}
-            className={`option ${selectedOption?.id === option.id ? 'selected' : ''}`}
-            onClick={() => handleOptionClick(option)}
-          >
-            {option.text}
-          </div>
-        ))}
-      </div>
-      
-      <div className="question-actions">
-        <Button 
-          onClick={onNext}
-          disabled={!selectedOption}
-          className="next-button"
-        >
-          Следующий вопрос
-        </Button>
-      </div>
-    </div>
-  );
-};
-
-export default Question;
