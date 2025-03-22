@@ -26,7 +26,7 @@ const StartScreen: React.FC<StartScreenProps> = ({ onStartTest }) => {
   return (
     <div className="start-screen-container fade-in">
       <div className="logo-container pulse-animation">
-        ПАЗЗЛЫ
+        ПАЗЛЫ
       </div>
       
       <h2>Узнай свою сверхспособность</h2>
