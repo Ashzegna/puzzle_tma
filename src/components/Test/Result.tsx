@@ -99,7 +99,7 @@ const Result: React.FC<ResultProps> = ({
           Пройти ещё раз
         </Button>
         <Button onClick={onShare} className="share-button">
-          Поделиться
+          Поделиться результатом
         </Button>
       </div>
     </div>
