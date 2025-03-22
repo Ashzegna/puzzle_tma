@@ -92,7 +92,7 @@ export function useTest() {
 Узнай свою сверхспособность!`;
       
       // Замените 'knowyourmagic_bot' на имя вашего бота (без символа @)
-      const botUsername = 'knowyourmagic_bot';
+      const botUsername = 'knowyourmagic_bot/ghKJ67';
       const shareUrl = `https://t.me/share/url?url=https://t.me/${botUsername}/app&text=${encodeURIComponent(shareText)}`;
       
       // Открываем ссылку в Telegram
