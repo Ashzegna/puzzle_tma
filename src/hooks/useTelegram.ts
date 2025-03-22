@@ -20,4 +20,36 @@ export function useTelegram() {
 
   // Функция для отображения основной кнопки
   const showMainButton = useCallback((text: string, callback: () => void) => {
-    WebApp.MainButton
+    WebApp.MainButton.setText(text);
+    WebApp.MainButton.onClick(callback);
+    WebApp.MainButton.show();
+
+    return () => {
+      WebApp.MainButton.offClick(callback);
+      WebApp.MainButton.hide();
+    };
+  }, []);
+
+  // Получение данных пользователя
+  const getUserData = useCallback(() => {
+    if (!WebApp.initDataUnsafe.user) {
+      return {
+        id: 'unknown',
+        name: 'Гость'
+      };
+    }
+
+    return {
+      id: WebApp.initDataUnsafe.user.id.toString(),
+      name: WebApp.initDataUnsafe.user.first_name,
+      username: WebApp.initDataUnsafe.user.username,
+    };
+  }, []);
+
+  return {
+    showMainButton,
+    openTelegramLink,
+    getUserData,
+    tgWebApp: WebApp
+  };
+}
