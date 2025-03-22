@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Button from '../UI/Button';
+import PuzzleAnimation from '../UI/PuzzleAnimation';
 
 interface StartScreenProps {
   onStartTest: () => void;
@@ -25,13 +26,11 @@ const StartScreen: React.FC<StartScreenProps> = ({ onStartTest }) => {
   
   return (
     <div className="start-screen-container fade-in">
-      <div className="logo-container pulse-animation">
-        ПАЗЛЫ
-      </div>
+      <PuzzleAnimation />
       
-      <h2>Узнай свою сверхспособность</h2>
+      <h2>Узнай свою скрытую сверхспособность</h2>
       
-      <div className="song-quote-container">
+      <div className="song-quote-container glass-card">
         <p className="song-quote-text">
           "Мы с тобой два пазла из разных коробок, края не совпадают, но узор один. Ты - загадка, я - ответ невпопад, вместе мы - ребус, что хочется разгадать."
         </p>
