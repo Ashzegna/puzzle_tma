@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 import { Option, Question, TestResult, Compatibility } from '../types';
-import { questions } from '../data/questions';
+import { enhancedQuestions } from '../data/enhancedQuestions';
 import { determinePersonalityType, generateResult, analyzeCompatibility } from '../utils/results';
 import { useTelegram } from './useTelegram';
 
@@ -44,7 +44,7 @@ export function useTest() {
     newAnswers[currentQuestionIndex] = selectedOption;
     setSelectedAnswers(newAnswers);
     
-    if (currentQuestionIndex < questions.length - 1) {
+    if (currentQuestionIndex < enhancedQuestions.length - 1) {
       setCurrentQuestionIndex(prev => prev + 1);
       setSelectedOption(null);
     } else {
@@ -91,8 +91,8 @@ export function useTest() {
 
 Узнай свою сверхспособность!`;
       
-      // Замените 'knowyourmagic_bot' на имя вашего бота (без символа @)
-      const botUsername = 'knowyourmagic_bot/ghKJ67';
+      // Используем встроенный механизм Telegram для шеринга URL
+      const botUsername = 'knowyourmagic_bot'; // Замените на имя вашего бота
       const shareUrl = `https://t.me/share/url?url=https://t.me/${botUsername}/app&text=${encodeURIComponent(shareText)}`;
       
       // Открываем ссылку в Telegram
@@ -113,9 +113,9 @@ export function useTest() {
   }, [isTestCompleted, testResult, showMainButton, shareResult]);
   
   return {
-    currentQuestion: questions[currentQuestionIndex],
+    currentQuestion: enhancedQuestions[currentQuestionIndex],
     currentQuestionIndex,
-    totalQuestions: questions.length,
+    totalQuestions: enhancedQuestions.length,
     selectedOption,
     isTestCompleted,
     testResult,
