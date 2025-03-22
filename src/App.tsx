@@ -64,9 +64,7 @@ const App: React.FC = () => {
         )}
       </main>
       
-      <footer className="app-footer">
-        <p>Песня "Пазлы" &copy; 2023-2025</p>
-      </footer>
+      {/* Футер полностью удален */}
     </div>
   );
 };
