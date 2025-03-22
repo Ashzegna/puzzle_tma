@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTest } from './hooks/useTest';
 import Question from './components/Test/Question';
 import Result from './components/Test/Result';
+import StartScreen from './components/Test/StartScreen';
 
 const App: React.FC = () => {
+  const [showTest, setShowTest] = useState(false);
+  
   const {
     currentQuestion,
     currentQuestionIndex,
@@ -18,14 +21,29 @@ const App: React.FC = () => {
     shareResult
   } = useTest();
 
+  const handleStartTest = () => {
+    setShowTest(true);
+  };
+
+  const handleRestart = () => {
+    restartTest();
+    setShowTest(false);
+  };
+
   return (
     <div className="container">
       <header className="app-header">
-        <h1>Твоя скрытая сверхспособность</h1>
+        {showTest && (
+          <h1>Твоя скрытая сверхспособность</h1>
+        )}
       </header>
       
       <main className="app-content">
-        {!isTestCompleted ? (
+        {!showTest && (
+          <StartScreen onStartTest={handleStartTest} />
+        )}
+        
+        {showTest && !isTestCompleted && (
           <Question 
             question={currentQuestion} 
             selectedOption={selectedOption}
@@ -34,20 +52,20 @@ const App: React.FC = () => {
             currentQuestion={currentQuestionIndex}
             totalQuestions={totalQuestions}
           />
-        ) : (
-          testResult && (
-            <Result 
-              result={testResult}
-              compatibility={compatibility}
-              onRestart={restartTest}
-              onShare={shareResult}
-            />
-          )
+        )}
+        
+        {showTest && isTestCompleted && testResult && (
+          <Result 
+            result={testResult}
+            compatibility={compatibility}
+            onRestart={handleRestart}
+            onShare={shareResult}
+          />
         )}
       </main>
       
       <footer className="app-footer">
-        <p>Песня "Пазлы" &copy; 2023-2025</p>
+        <p>Песня "Паззлы" &copy; 2023-2025</p>
       </footer>
     </div>
   );
