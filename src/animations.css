@@ -146,7 +146,6 @@
   transform: translateX(10px);
   background-color: var(--accent-color);
   color: #000;
-  transition: all 0.3s ease;
 }
 
 /* Стили для конфетти-эффекта */
@@ -158,13 +157,36 @@
   transition: all 1s ease-out;
 }
 
-/* Новые стили для плавного перехода между вопросами */
-.question-transitioning {
-  opacity: 0.8;
-  transform: translateX(-10px);
-  transition: all 0.3s ease;
+/* Стили для кнопки следующего вопроса */
+.question-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
 }
 
-.option-disabled {
-  pointer-events: none; /* Отключает взаимодействие во время перехода */
+.next-button {
+  width: 80%;
+  max-width: 250px;
+  padding: 15px;
+  font-size: 1.1rem;
+  background-color: var(--accent-color);
+  color: #000;
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  opacity: 1;
+}
+
+.next-button:disabled {
+  opacity: 0.5;
+  transform: none;
+  box-shadow: none;
+  cursor: not-allowed;
+  animation: none;
+}
+
+/* Анимация для кнопки при выборе опции */
+.next-button:not(:disabled) {
+  animation: pulse 2s infinite;
 }
