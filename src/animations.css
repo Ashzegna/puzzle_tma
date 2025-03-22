@@ -11,9 +11,9 @@
 }
 
 @keyframes glow {
-  0% { box-shadow: 0 0 5px rgba(24, 255, 255, 0.6); }
-  50% { box-shadow: 0 0 20px rgba(24, 255, 255, 0.9); }
-  100% { box-shadow: 0 0 5px rgba(24, 255, 255, 0.6); }
+  0% { box-shadow: 0 0 5px rgba(245, 158, 11, 0.6); }
+  50% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.9); }
+  100% { box-shadow: 0 0 5px rgba(245, 158, 11, 0.6); }
 }
 
 .float-animation {
@@ -33,7 +33,7 @@
   width: 200px;
   height: 200px;
   margin: 0 auto 20px;
-  background-color: #6A5ACD;
+  background-color: #2d3748;
   border-radius: 20px;
   display: flex;
   justify-content: center;
@@ -42,6 +42,7 @@
   font-weight: bold;
   color: white;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  border: 2px solid var(--accent-color);
 }
 
 .start-screen-container {
@@ -66,7 +67,7 @@
   max-width: 250px;
   padding: 15px;
   font-size: 1.2rem;
-  background-color: #FF6B81;
+  background-color: var(--accent-color);
 }
 
 .stats-counter {
@@ -86,17 +87,19 @@
   justify-content: center;
   align-items: center;
   font-size: 3rem;
-  background: linear-gradient(135deg, #4A24D9, #8A2BE2);
+  background: linear-gradient(135deg, #2d3748, #4a5568);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  border: 3px solid var(--accent-color);
 }
 
 .song-quote {
   padding: 15px;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(245, 158, 11, 0.1);
   border-radius: 10px;
   margin: 15px 0;
   text-align: center;
   font-style: italic;
+  border-left: 4px solid var(--accent-color);
 }
 
 .compatibility-emoji {
@@ -109,7 +112,7 @@
   font-size: 1.5rem;
   text-align: center;
   margin: 10px 0;
-  color: #FFD700;
+  color: var(--accent-color);
 }
 
 .result-actions {
@@ -119,11 +122,11 @@
 }
 
 .restart-button {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .share-button {
-  background-color: #FF6B81;
+  background-color: var(--accent-color);
 }
 
 /* Улучшенные стили для опций */
