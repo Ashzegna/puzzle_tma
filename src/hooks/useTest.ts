@@ -3,7 +3,6 @@ import { Option, Question, TestResult, Compatibility } from '../types';
 import { questions } from '../data/questions';
 import { determinePersonalityType, generateResult, analyzeCompatibility } from '../utils/results';
 import { useTelegram } from './useTelegram';
-import confetti from 'canvas-confetti';
 
 export function useTest() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -55,12 +54,9 @@ export function useTest() {
       setTestResult(result);
       setIsTestCompleted(true);
       
-      // Запускаем анимацию конфетти
-      confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 }
-      });
+      // Анимация завершения будет добавлена позже
+      // Или можно использовать простую альтернативу без библиотеки
+      console.log('Тест завершен!');
       
       // Проверяем, есть ли данные о поделенном тесте
       const sharedPowerType = localStorage.getItem('sharedPowerType');
