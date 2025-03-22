@@ -55,7 +55,7 @@ const Result: React.FC<ResultProps> = ({
 
   return (
     <div className="result-container">
-      <div className="result-card card fade-in">
+      <div className="result-card card glass-card fade-in">
         <div className="result-header">
           <div className="result-icon float-animation">{result.emoji}</div>
           <h1 className="result-title glow-animation">{result.name}</h1>
@@ -76,7 +76,6 @@ const Result: React.FC<ResultProps> = ({
             target="_blank" 
             rel="noopener noreferrer" 
             className="song-link"
-            style={{ color: 'var(--accent-color)', textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '10px' }}
           >
             🎧 Послушать песню "Пазлы"
           </a>
@@ -84,7 +83,7 @@ const Result: React.FC<ResultProps> = ({
       </div>
       
       {compatibility && (
-        <div className="compatibility-card card fade-in">
+        <div className="compatibility-card card glass-card fade-in">
           <h2>Совместимость</h2>
           <p className="compatibility-emoji pulse-animation">{compatibility.emojis}</p>
           <div className="compatibility-stars">
