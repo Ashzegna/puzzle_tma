@@ -76,8 +76,9 @@ const Result: React.FC<ResultProps> = ({
             target="_blank" 
             rel="noopener noreferrer" 
             className="song-link"
+            style={{ color: 'var(--accent-color)', textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '10px' }}
           >
-            🎧 Послушать песню
+            🎧 Послушать песню "Пазлы"
           </a>
         </div>
       </div>
