@@ -1,6 +1,5 @@
 import React from 'react';
 import { Question as QuestionType, Option } from '../../types';
-import Button from '../UI/Button';
 import ProgressBar from '../UI/ProgressBar';
 
 interface QuestionProps {
@@ -20,6 +19,16 @@ const Question: React.FC<QuestionProps> = ({
   currentQuestion,
   totalQuestions
 }) => {
+  // Функция для обработки клика по опции
+  const handleOptionClick = (option: Option) => {
+    onSelectOption(option);
+    
+    // Добавляем небольшую задержку для визуальной обратной связи
+    setTimeout(() => {
+      onNext();
+    }, 300);
+  };
+
   return (
     <div className="question-container card fade-in">
       <ProgressBar current={currentQuestion + 1} total={totalQuestions} />
@@ -33,20 +42,12 @@ const Question: React.FC<QuestionProps> = ({
           <div
             key={option.id}
             className={`option ${selectedOption?.id === option.id ? 'selected' : ''}`}
-            onClick={() => onSelectOption(option)}
+            onClick={() => handleOptionClick(option)}
           >
             {option.text}
           </div>
         ))}
       </div>
-      
-      <Button 
-        onClick={onNext} 
-        disabled={!selectedOption}
-        className="next-button"
-      >
-        {currentQuestion < totalQuestions - 1 ? 'Следующий вопрос' : 'Узнать результат'}
-      </Button>
     </div>
   );
 };
