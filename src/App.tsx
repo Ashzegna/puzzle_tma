@@ -4,6 +4,9 @@ import Question from './components/Test/Question';
 import Result from './components/Test/Result';
 import StartScreen from './components/Test/StartScreen';
 
+// Правильное имя бота для использования в разных частях приложения
+export const BOT_USERNAME = 'knowyourmagic_bot';
+
 const App: React.FC = () => {
   const [showTest, setShowTest] = useState(false);
   
@@ -63,8 +66,6 @@ const App: React.FC = () => {
           />
         )}
       </main>
-      
-      {/* Футер полностью удален */}
     </div>
   );
 };
