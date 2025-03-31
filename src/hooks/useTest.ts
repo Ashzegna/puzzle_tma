@@ -4,6 +4,9 @@ import { enhancedQuestions } from '../data/enhancedQuestions';
 import { determinePersonalityType, generateResult, analyzeCompatibility } from '../utils/results';
 import { useTelegram } from './useTelegram';
 
+// Правильное имя бота, используемое во всех местах кода
+const BOT_USERNAME = 'knowyourmagic_bot';
+
 export function useTest() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState<Option[]>([]);
@@ -97,11 +100,8 @@ export function useTest() {
 
 Узнай свою сверхспособность!`;
       
-      // Имя вашего бота (замените на реальное имя)
-      const botUsername = 'knowyourmagic_bot';
-      
       // Формируем ссылку с уникальным параметром в пути, как в вашем рабочем примере
-      const appUrl = `https://t.me/${botUsername}/${shareId}/app`;
+      const appUrl = `https://t.me/${BOT_USERNAME}/${shareId}/app`;
       
       // Используем механизм Telegram для шеринга
       const shareUrl = `https://t.me/share/url?url=${encodeURIComponent(appUrl)}&text=${encodeURIComponent(shareText)}`;
@@ -121,12 +121,9 @@ export function useTest() {
   // Иначе может быть конфликт между разными способами шеринга
   useEffect(() => {
     if (isTestCompleted && testResult) {
-      // Комментируем или удаляем эту часть, чтобы избежать дублирования
+      // Закомментировано, чтобы избежать конфликта с кнопкой в UI
       // const cleanup = showMainButton('Поделиться результатом', shareResult);
       // return cleanup;
-      
-      // Или можно использовать только MainButton, но отключить кнопку в UI
-      // На ваше усмотрение
     }
   }, [isTestCompleted, testResult, showMainButton, shareResult]);
   
