@@ -1,16 +1,20 @@
-export type SuperpowerType = 
-  | 'emotionalTelepatia'
-  | 'magneticAttraction'
-  | 'relationshipAlchemy'
-  | 'soulHealer'
-  | 'wisdomKeeper'
-  | 'specialMomentCreator'
-  | 'impossibilityMaster';
+// Определение гендера пользователя
+export type GenderType = 'male' | 'female';
+
+// Типы характеров
+export type PartnerType = 
+  | 'dreamyIntellectual'
+  | 'charismaticLeader'
+  | 'creativeSoul'
+  | 'reliableProtector'
+  | 'intellectualMentor'
+  | 'unpredictableAdventurer'
+  | 'ambitiousAchiever';
 
 export interface Option {
   id: string;
   text: string;
-  type: SuperpowerType;
+  type: string; // Может быть GenderType или PartnerType
 }
 
 export interface Question {
@@ -21,7 +25,7 @@ export interface Question {
 }
 
 export interface Superpower {
-  type: SuperpowerType;
+  type: string;
   name: string;
   emoji: string;
   description: string;
@@ -31,7 +35,7 @@ export interface Superpower {
 }
 
 export interface TestResult {
-  type: SuperpowerType;
+  type: string;
   name: string;
   emoji: string;
   description: string;
@@ -51,6 +55,7 @@ export interface Compatibility {
 export interface User {
   id: string;
   name?: string;
+  gender?: GenderType;
   result?: TestResult;
 }
 
