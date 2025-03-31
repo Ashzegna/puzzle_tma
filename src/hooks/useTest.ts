@@ -4,9 +4,6 @@ import { enhancedQuestions } from '../data/enhancedQuestions';
 import { determinePersonalityType, generateResult, analyzeCompatibility } from '../utils/results';
 import { useTelegram } from './useTelegram';
 
-// Правильное имя бота, используемое во всех местах кода
-const BOT_USERNAME = 'knowyourmagic_bot';
-
 export function useTest() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState<Option[]>([]);
@@ -80,17 +77,11 @@ export function useTest() {
     setCompatibility(null);
   }, []);
   
-  // Поделиться результатом теста (исправленная версия)
+  // Самая простая версия функции шеринга
   const shareResult = useCallback(() => {
     if (!testResult) return;
     
     try {
-      // Создаем уникальный идентификатор для шеринга
-      // Используем комбинацию типа результата и случайных символов
-      const resultType = testResult.type;
-      const randomPart = Math.random().toString(36).substring(2, 6);
-      const shareId = resultType.substring(0, 3) + randomPart;
-      
       // Формируем текст сообщения с результатом
       const shareText = `🧠 Я прошел тест "Пазлы" и узнал свою скрытую сверхспособность!
       
@@ -100,16 +91,17 @@ export function useTest() {
 
 Узнай свою сверхспособность!`;
       
-      // Формируем ссылку с уникальным параметром в пути, как в вашем рабочем примере
-      const appUrl = `https://t.me/${BOT_USERNAME}/${shareId}/app`;
+      // Имя бота из рабочего примера
+      const botUsername = 'knowyourmagic_bot';
+      
+      // Используем точный формат из вашего примера
+      const appUrl = `https://t.me/${botUsername}/ghKJ67/app`;
       
       // Используем механизм Telegram для шеринга
       const shareUrl = `https://t.me/share/url?url=${encodeURIComponent(appUrl)}&text=${encodeURIComponent(shareText)}`;
       
       // Открываем диалог шеринга в Telegram
       tgWebApp.openTelegramLink(shareUrl);
-      
-      console.log('Поделились ссылкой:', appUrl);
       
     } catch (error) {
       console.error('Ошибка при попытке поделиться:', error);
@@ -118,7 +110,6 @@ export function useTest() {
   }, [testResult, tgWebApp]);
   
   // Убираем MainButton и оставляем только кнопку в UI
-  // Иначе может быть конфликт между разными способами шеринга
   useEffect(() => {
     if (isTestCompleted && testResult) {
       // Закомментировано, чтобы избежать конфликта с кнопкой в UI
