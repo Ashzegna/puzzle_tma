@@ -77,11 +77,17 @@ export function useTest() {
     setCompatibility(null);
   }, []);
   
-  // Поделиться результатом теста
+  // Поделиться результатом теста (исправленная версия)
   const shareResult = useCallback(() => {
     if (!testResult) return;
     
     try {
+      // Создаем уникальный идентификатор для шеринга
+      // Используем комбинацию типа результата и случайных символов
+      const resultType = testResult.type;
+      const randomPart = Math.random().toString(36).substring(2, 6);
+      const shareId = resultType.substring(0, 3) + randomPart;
+      
       // Формируем текст сообщения с результатом
       const shareText = `🧠 Я прошел тест "Пазлы" и узнал свою скрытую сверхспособность!
       
@@ -91,12 +97,19 @@ export function useTest() {
 
 Узнай свою сверхспособность!`;
       
-      // Используем встроенный механизм Telegram для шеринга URL
-      const botUsername = 'knowyourmagic_bot'; // Замените на имя вашего бота
-      const shareUrl = `https://t.me/share/url?url=https://t.me/${botUsername}/app&text=${encodeURIComponent(shareText)}`;
+      // Имя вашего бота (замените на реальное имя)
+      const botUsername = 'knowyourmagic_bot';
       
-      // Открываем ссылку в Telegram
+      // Формируем ссылку с уникальным параметром в пути, как в вашем рабочем примере
+      const appUrl = `https://t.me/${botUsername}/${shareId}/app`;
+      
+      // Используем механизм Telegram для шеринга
+      const shareUrl = `https://t.me/share/url?url=${encodeURIComponent(appUrl)}&text=${encodeURIComponent(shareText)}`;
+      
+      // Открываем диалог шеринга в Telegram
       tgWebApp.openTelegramLink(shareUrl);
+      
+      console.log('Поделились ссылкой:', appUrl);
       
     } catch (error) {
       console.error('Ошибка при попытке поделиться:', error);
@@ -104,11 +117,16 @@ export function useTest() {
     }
   }, [testResult, tgWebApp]);
   
-  // Установка кнопки шаринга в конце теста
+  // Убираем MainButton и оставляем только кнопку в UI
+  // Иначе может быть конфликт между разными способами шеринга
   useEffect(() => {
     if (isTestCompleted && testResult) {
-      const cleanup = showMainButton('Поделиться результатом', shareResult);
-      return cleanup;
+      // Комментируем или удаляем эту часть, чтобы избежать дублирования
+      // const cleanup = showMainButton('Поделиться результатом', shareResult);
+      // return cleanup;
+      
+      // Или можно использовать только MainButton, но отключить кнопку в UI
+      // На ваше усмотрение
     }
   }, [isTestCompleted, testResult, showMainButton, shareResult]);
   
