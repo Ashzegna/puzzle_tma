@@ -28,7 +28,7 @@ const StartScreen: React.FC<StartScreenProps> = ({ onStartTest }) => {
     <div className="start-screen-container fade-in">
       <PuzzleAnimation />
       
-      <h2>Узнай свою скрытую сверхспособность</h2>
+      <h2>Какая кинозвезда станет твоим идеальным партнером?</h2>
       
       <div className="song-quote-container glass-card">
         <p className="song-quote-text">
@@ -47,7 +47,7 @@ const StartScreen: React.FC<StartScreenProps> = ({ onStartTest }) => {
       </div>
       
       <p className="description">
-        Пройди тест и открой для себя свою уникальную сверхспособность в отношениях с другими людьми, найди свой пазл в этом мире.
+        Пройди тест и узнай, какая голливудская звезда идеально подходит именно тебе. Раскрой секрет своей идеальной пары!
       </p>
       
       <Button onClick={onStartTest} className="start-button">

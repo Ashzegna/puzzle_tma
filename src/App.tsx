@@ -37,7 +37,7 @@ const App: React.FC = () => {
     <div className="container">
       <header className="app-header">
         {showTest && (
-          <h1>Твоя скрытая сверхспособность</h1>
+          <h1>Твой идеальный партнер</h1>
         )}
       </header>
       
